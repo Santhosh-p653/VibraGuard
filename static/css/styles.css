@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  text-align: center;
+}
+
+.bar {
+  width: 50%;
+  height: 30px;
+  margin: 10px auto;
+  background: #ddd;
+}
+
+.bar-fill {
+  height: 100%;
+  background: green;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 60%;
+}
+
+th, td {
+  border: 1px solid #999;
+  padding: 8px;
+}
+
+.alert {
+  color: red;
+  font-weight: bold;
+}
+
+.status {
+  margin: 10px;
+  font-weight: bold;
+}
