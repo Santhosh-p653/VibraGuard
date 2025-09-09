@@ -1,8 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-file_path = r'c:\vibraguard\data\geophone-sensor-data.xlsx'
-df = pd.read_excel(file_path)
+import config
+
+df = pd.read_excel(config.x)
+
 print(df.head())
 df['timestamp'] = pd.to_datetime(df['timestamp'], format='%H:%M:%S')
 
