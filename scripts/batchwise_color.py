@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-
-file_path = '/content/drive/My Drive/Colab Notebooks/geophone.csv.xlsx'
+file_path = r'c:\vibraguard\data\geophone-sensor-data.xlsx'
 df = pd.read_excel(file_path)
 
 # --- Ensure timestamp column is datetime ---
