@@ -20,3 +20,8 @@ VibraGuard is a **smart vibration monitoring and alert system** designed to dete
 git clone https://github.com/yourusername/vibraguard.git
 cd vibraguard
 pip install -r requirements.txt
+
+##Local Host url
+
+http://127.0.0.1:5000/
+
