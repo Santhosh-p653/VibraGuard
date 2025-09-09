@@ -1,7 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-file_path = r'c:\vibraguard\data\geophone-sensor-data.xlsx'
-df = pd.read_excel(file_path)
+import config
+
+df = pd.read_excel(config.x)
 
 # --- Ensure timestamp column is datetime ---
 df['timestamp'] = pd.to_datetime('2000-01-01 ' + df['timestamp'].astype(str), errors='coerce')
