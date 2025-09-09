@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 
 # --- Load and prepare data ---
-file_path = '/content/drive/My Drive/Colab Notebooks/geophone.csv.xlsx'
+file_path = r'c:\vibraguard\data\geophone-sensor-data.xlsx'
 df = pd.read_excel(file_path)
 
 df['timestamp'] = pd.to_datetime('2000-01-01 ' + df['timestamp'].astype(str), errors='coerce')
