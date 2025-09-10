@@ -1,0 +1,34 @@
+// Define pin numbers
+const int pirPin = 2;           // PIR sensor connected to digital pin 2
+const int vibrationPin = 3;     // Vibration sensor connected to digital pin 3
+const int ledPin = 13;          // LED connected to digital pin 13 (built-in LED on most boards)
+
+void setup() {
+  pinMode(pirPin, INPUT);           // PIR sensor as input
+  pinMode(vibrationPin, INPUT);     // Vibration sensor as input
+  pinMode(ledPin, OUTPUT);          // LED as output
+
+  // Optional: Serial monitor for debugging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read inputs from both sensors
+  int pirValue = digitalRead(pirPin);
+  int vibrationValue = digitalRead(vibrationPin);
+
+  // Print values to Serial Monitor (optional)
+  Serial.print("PIR: ");
+  Serial.print(pirValue);
+  Serial.print(" | Vibration: ");
+  Serial.println(vibrationValue);
+
+  // Check if BOTH sensors are activated
+  if (pirValue == HIGH && vibrationValue == HIGH) {
+    digitalWrite(ledPin, HIGH);  // Turn ON LED
+  } else {
+    digitalWrite(ledPin, LOW);   // Turn OFF LED
+  }
+
+  delay(100); // Short delay to avoid bouncing
+}
