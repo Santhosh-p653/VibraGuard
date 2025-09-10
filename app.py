@@ -6,16 +6,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import io
+import threading
+
+# ── Import logging function ─────────────────────────────
+from log_to_csv import start_logging
 
 app = Flask(__name__)
 
-# Load real sensor data
+# ── Load real sensor data ───────────────────────────────
 def load_real_data(csv_path=r"C:\VibraGuard\data\data.csv"):
     df = pd.read_csv(csv_path)
     df = df.dropna(subset=['motion_raw', 'vibration_raw'])  # Drop rows with missing values
     return df
 
-# Extract features and labels
+# ── Extract features and labels ─────────────────────────
 def extract_features_and_labels(df, window_size=10, step_size=5):
     motion = df['motion_raw']
     vibration = df['vibration_raw']
@@ -34,7 +38,7 @@ def extract_features_and_labels(df, window_size=10, step_size=5):
 
     return np.array(features), np.array(labels)
 
-# Train classifier
+# ── Train classifier ────────────────────────────────────
 def train_model():
     df = load_real_data()
     X, y = extract_features_and_labels(df)
@@ -43,7 +47,7 @@ def train_model():
     clf.fit(X_train, y_train)
     return clf, df
 
-# Serve sensor line graph at root
+# ── Serve sensor line graph ─────────────────────────────
 @app.route("/")
 def show_sensor_plot():
     _, df = train_model()
@@ -69,7 +73,7 @@ def show_sensor_plot():
     plt.close(fig)
     return Response(buf.getvalue(), mimetype='image/png')
 
-# Serve confusion matrix
+# ── Serve confusion matrix ──────────────────────────────
 @app.route("/confusion_matrix.png")
 def stream_confusion_matrix():
     clf, df = train_model()
@@ -90,5 +94,7 @@ def stream_confusion_matrix():
     plt.close(fig)
     return Response(buf.getvalue(), mimetype='image/png')
 
+# ── Launch Flask and sensor logging ─────────────────────
 if __name__ == "__main__":
+    threading.Thread(target=start_logging, daemon=True).start()
     app.run(debug=True)
