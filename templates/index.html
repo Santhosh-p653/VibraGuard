@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VibraGuard Dashboard</title>
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- React & ReactDOM -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta charset="UTF-8" />
+  <title>Sensor Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div id="root"></div>
-  
-  <!-- JS -->
-  <script type="text/babel" src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <div class="container">
+    <h2>📈 Sensor Data</h2>
+    <img id="sensorPlot" src="/sensor_plot.png" alt="Sensor Plot" />
+    <button onclick="refreshSensorPlot()">🔄 Refresh Plot</button>
+
+    <h2>📊 Confusion Matrix</h2>
+    <img id="confMatrix" src="/confusion_matrix.png" alt="Confusion Matrix" />
+    <button onclick="refreshConfMatrix()">🔄 Refresh Matrix</button>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

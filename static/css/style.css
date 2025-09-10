@@ -1,0 +1,29 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+h2 {
+  color: #333;
+  margin-top: 2rem;
+}
+
+img {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
