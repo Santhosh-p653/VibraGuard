@@ -4,9 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Analytics - NEURONINJAS</title>
+
+    <!-- Bootstrap & Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="../static/css/style.css" rel="stylesheet">
+
+    <!-- Your CSS (Flask static) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -19,16 +25,16 @@
         <div class="offcanvas-body">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="student_report.html"><i class="bi bi-person me-2"></i>Individual Student Report</a>
+                    <a class="nav-link" href="{{ url_for('student_report') }}"><i class="bi bi-person me-2"></i>Individual Student Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="class_report.html"><i class="bi bi-people me-2"></i>Class Attendance Report</a>
+                    <a class="nav-link" href="{{ url_for('class_report') }}"><i class="bi bi-people me-2"></i>Class Attendance Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="teacher_report.html"><i class="bi bi-clipboard-check me-2"></i>Teacher Attendance Report</a>
+                    <a class="nav-link" href="{{ url_for('teacher_report') }}"><i class="bi bi-clipboard-check me-2"></i>Teacher Attendance Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="analytics.html"><i class="bi bi-graph-up me-2"></i>Analytics of Attendance</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('analytics') }}"><i class="bi bi-graph-up me-2"></i>Analytics of Attendance</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#chatbotModal"><i class="bi bi-robot me-2"></i>Chatbot for Help</a>
@@ -37,7 +43,7 @@
                     <button class="nav-link btn-link ps-2" id="download-report-sidebar"><i class="bi bi-download me-2"></i>Download Report</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html"><i class="bi bi-info-circle me-2"></i>Reference and Contact</a>
+                    <a class="nav-link" href="{{ url_for('contact') }}"><i class="bi bi-info-circle me-2"></i>Reference and Contact</a>
                 </li>
             </ul>
             <hr>
@@ -59,7 +65,7 @@
                 </button>
             </div>
             <div class="col text-center">
-                <a class="h4 text-decoration-none" href="index.html">NEURONINJAS</a>
+                <a class="h4 text-decoration-none" href="{{ url_for('index') }}">NEURONINJAS</a>
             </div>
             <div class="col text-end">
             </div>
@@ -84,6 +90,7 @@
         </div>
     </div>
 
+    <!-- Chatbot Modal -->
     <div class="modal fade" id="chatbotModal" tabindex="-1" aria-labelledby="chatbotModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -106,14 +113,16 @@
         </div>
     </div>
 
+    <!-- Bootstrap Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../static/js/main.js"></script>
+    <!-- Your JS (Flask static) -->
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
             const savedTheme = localStorage.getItem('theme');
-            
+
             if (savedTheme) {
                 document.body.setAttribute('data-bs-theme', savedTheme);
                 if (savedTheme === 'dark') {
@@ -139,12 +148,12 @@
             { name: 'Emily Davis', attended: 15, totalClasses: 25 },
             { name: 'Chris Miller', attended: 25, totalClasses: 25 },
         ];
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             const barChartCtx = document.getElementById('studentAttendanceBarChart').getContext('2d');
             const studentNames = studentData.map(student => student.name);
             const classesAttended = studentData.map(student => student.attended);
-            
+
             new Chart(barChartCtx, {
                 type: 'bar',
                 data: {
@@ -168,9 +177,9 @@
             });
 
             const pieChartCtx = document.getElementById('attendanceRatePieChart').getContext('2d');
-            
+
             const attendancePercentages = studentData.map(student => (student.attended / student.totalClasses) * 100);
-            
+
             const highAttendance = attendancePercentages.filter(p => p >= 90).length;
             const mediumAttendance = attendancePercentages.filter(p => p >= 70 && p < 90).length;
             const lowAttendance = attendancePercentages.filter(p => p < 70).length;
