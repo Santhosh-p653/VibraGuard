@@ -1,29 +1,148 @@
+/* Custom Scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+}
 
+::-webkit-scrollbar-track {
+    background: var(--bs-body-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Base body and typography styles for both themes */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  padding: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #f8f9fa;
+    color: #212529;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.container {
-  max-width: 800px;
-  margin: auto;
+/* Link color customization for both themes */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-h2 {
-  color: #333;
-  margin-top: 2rem;
+a:hover {
+    color: #0056b3;
 }
 
-img {
-  max-width: 100%;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
+/* Card styles for both themes */
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
+/* Offcanvas (Sidebar) styles */
+.offcanvas {
+    background-color: #f1f3f5;
+    transition: background-color 0.3s;
+}
+
+/* Offcanvas link styles */
+.offcanvas .nav-link {
+    color: #495057;
+    transition: color 0.2s;
+}
+
+.offcanvas .nav-link:hover {
+    color: #000;
+    background-color: #e9ecef;
+}
+
+/* Dark theme specific styles */
+[data-bs-theme="dark"] {
+    body {
+        background-color: #212529;
+        color: #e9ecef;
+    }
+
+    .card {
+        background-color: #343a40;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    }
+
+    a {
+        color: #89b4f4;
+    }
+
+    a:hover {
+        color: #6c98e1;
+    }
+
+    .offcanvas {
+        background-color: #2c3034;
+    }
+
+    .offcanvas .nav-link {
+        color: #ced4da;
+    }
+
+    .offcanvas .nav-link:hover {
+        color: #fff;
+        background-color: #495057;
+    }
+}
+
+/* Chatbot styles */
+.modal-body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.modal-footer {
+    background-color: var(--bs-body-bg);
+    border-top-color: var(--bs-border-color-translucent);
+}
+
+.modal-header {
+    border-bottom-color: var(--bs-border-color-translucent);
+}
+
+#chatbot-input {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+}
+
+/* Base styles for chat bubbles */
+.chat-bubble {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+/* User message styles */
+.chat-bubble.user {
+    background-color: #dcf8c6;
+    margin-left: auto;
+}
+
+/* AI message styles */
+.chat-bubble.ai {
+    background-color: #f1f3f5;
+    margin-right: auto;
+}
+
+/* Dark theme specific styles for chat bubbles */
+[data-bs-theme="dark"] .chat-bubble.user {
+    background-color: #1e7b41;
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .chat-bubble.ai {
+    background-color: #495057;
+    color: #ffffff;
 }
