@@ -1,0 +1,42 @@
+// PIR sensor on D2, Vibration sensor on D3, LED on D13
+
+int pirPin = 2;       // PIR sensor input
+int vibPin = 3;       // Vibration sensor input
+int ledPin = 13;      // Built-in LED
+
+int lastTrigger = LOW;  // Store previous combined state
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(vibPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+
+  Serial.begin(115200);
+  Serial.println("PIR + Vibration Simultaneous Trigger Test Started...");
+}
+
+void loop() {
+  int pirState = digitalRead(pirPin);
+  int vibState = digitalRead(vibPin);
+
+  // Combined condition: both HIGH
+  int combinedState = (pirState == HIGH && vibState == HIGH) ? HIGH : LOW;
+
+  if (combinedState == HIGH) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  // Print only when combined state changes
+  if (combinedState != lastTrigger) {
+    if (combinedState == HIGH) {
+      Serial.println("ALERT: Both Motion + Vibration Detected!");
+    } else {
+      Serial.println("Sensors Idle");
+    }
+    lastTrigger = combinedState;
+  }
+
+  delay(100); // Small delay for stability
+}
